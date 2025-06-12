@@ -59,31 +59,29 @@ async listarUsuarios(): Promise<void> {
     btnListar?.addEventListener('click', async () => {
         const { data } = await axios.get('http://localhost:3000/usuario/listar');
         if (contenedor) {
-            contenedor.innerHTML = `
-                <ul>
-                    ${data.map((usuario: any) => `
-                    <table border="1" cellpadding="5" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${data.map((usuario: any) => `
-                        <tr>
-                            <td>${usuario.dni_usuario_pk}</td>
-                            <td>${usuario.nombre_usuario}</td>
-                            <td>${usuario.apellido_usuario}</td>
-                            <td>${usuario.correo_usuario || ''}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-                    `).join('')}
-                </ul>
+            contenedor.innerHTML = `<div class="tabla-contenedor">
+  <table class="tabla-usuarios">
+    <thead>
+      <tr>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${data.map((usuario: any) => `
+        <tr>
+          <td>${usuario.dni_usuario_pk}</td>
+          <td>${usuario.nombre_usuario}</td>
+          <td>${usuario.apellido_usuario}</td>
+          <td>${usuario.correo_usuario || ''}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>
+</div>
+
             `;
         }
     });
@@ -160,14 +158,17 @@ export class Rol {
             const { data } = await axios.get('http://localhost:3000/rol/listar');
             if (contenedor) {
                 contenedor.innerHTML = `
-                    <ul>
-                        ${data.map((rol: any) => `
-                            <li>
-                                <strong>ID:</strong> ${rol.id_rol_pk} - 
-                                <strong>Nombre:</strong> ${rol.nombre_rol}
-                            </li>
-                        `).join('')}
-                    </ul>
+                    <div class="lista-contenedor">
+  <ul class="lista-roles">
+    ${data.map((rol: any) => `
+      <li>
+        <span><strong>ID:</strong> ${rol.id_rol_pk}</span>
+        <span><strong>Nombre:</strong> ${rol.nombre_rol}</span>
+      </li>
+    `).join('')}
+  </ul>
+</div>
+
                 `;
             }
         } catch (error) {

@@ -8,52 +8,6 @@ import { Usuario, listar } from './bases/05-apinode';
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <style>
-    .sidebar {
-      width: 220px;
-      background: #222;
-      color: #fff;
-      height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      padding: 2rem 1rem 1rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .sidebar h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #00bfff;
-    }
-    .sidebar button {
-      background: none;
-      border: none;
-      color: #fff;
-      padding: 0.7rem 1rem;
-      text-align: left;
-      width: 100%;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.2s;
-      font-size: 1rem;
-    }
-    .sidebar button.active, .sidebar button:hover {
-      background: #00bfff;
-      color: #222;
-    }
-    .main-content {
-      margin-left: 240px;
-      padding: 2rem;
-    }
-    .form-section {
-      display: none;
-    }
-    .form-section.active {
-      display: block;
-    }
-  </style>
   <div class="sidebar">
     <h2>Menú Principal</h2>
     <button id="menu-rick" class="active">Ricky Morty</button>
@@ -61,60 +15,39 @@ app.innerHTML = `
     <button id="menu-rol">Endpoints de Rol</button>
   </div>
   <div class="main-content">
-  <div id="usuario-section" class="form-section active">
-  <h2> CRUD Usuarios</h2>
-  <button id="btn-listar" class="btn btn-primary">Listar usuarios</button>
+   <div id="usuario-section" class="form-section active">
+  <h2>CRUD Usuarios</h2>
+  <button id="btn-listar">Listar usuarios</button>
 
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>DNI</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>2</td><td>Kevin</td><td>Castañeda</td><td>bx57599@gmail.com</td></tr>
-      <tr><td>333</td><td>dp</td><td>tovar</td><td>dp@gmail.com</td></tr>
-      <tr><td>22222</td><td>pablo</td><td>martínez</td><td>sdsfe@gmail.com</td></tr>
-      <tr><td>1</td><td>andres</td><td>escobar</td><td>andres@gmail.com</td></tr>
-      <tr><td>7</td><td>panchas</td><td>correa</td><td>correaslocas@gmail.com</td></tr>
-    </tbody>
-  </table>
-
-  <h2> Buscar usuario por ID</h2>
+  <div id="crud-s"></div>
+  <h2>Buscar usuario por ID</h2>
   <div id="crud-usuario"></div>
-  <input type="number" id="id_usuario_buscar" class="form-input" placeholder="Ingrese ID de usuario" />
-  <button id="btn-buscar" class="btn btn-primary">Buscar usuario por ID</button>
-
-  <h2> Eliminar usuario por ID</h2>
-  <input type="number" id="id_usuario_eliminar" class="form-input" placeholder="Ingrese ID de usuario" />
-  <button id="btn-eliminar" class="btn btn-primary">Eliminar usuario por ID</button>
-
-  <h2> Registrar usuario</h2>
-  <input type="number" id="id_usuario_registrar" class="form-input" placeholder="Ingrese ID de usuario" />
-  <input type="text" id="nombre_registrar" class="form-input" placeholder="Ingrese nombre" />
-  <input type="text" id="apellido_registrar" class="form-input" placeholder="Ingrese apellido" />
-  <input type="text" id="telefono_registrar" class="form-input" placeholder="Ingrese teléfono" />
-  <input type="email" id="email_registrar" class="form-input" placeholder="Ingrese email" />
-  <input type="password" id="contraseña_registrar" class="form-input" placeholder="Ingrese contraseña" />
-  <input type="text" id="estado_registrar" class="form-input" placeholder="Ingrese estado" />
-  <input type="number" id="id_rol_registrar" class="form-input" placeholder="Ingrese ID de rol" />
-  <button id="btn-registrar" class="btn btn-primary">Registrar usuario</button>
-
-  <h2> Actualizar usuario</h2>
-  <input type="number" id="id_usuario_actualizar" class="form-input" placeholder="Ingrese ID de usuario" />
-  <input type="text" id="nombre_actualizar" class="form-input" placeholder="Ingrese nombre" />
-  <input type="text" id="apellido_actualizar" class="form-input" placeholder="Ingrese apellido" />
-  <input type="text" id="telefono_actualizar" class="form-input" placeholder="Ingrese teléfono" />
-  <input type="email" id="email_actualizar" class="form-input" placeholder="Ingrese email" />
-  <input type="password" id="contraseña_actualizar" class="form-input" placeholder="Ingrese contraseña" />
-  <input type="text" id="estado_actualizar" class="form-input" placeholder="Ingrese estado" />
-  <input type="number" id="id_rol_actualizar" class="form-input" placeholder="Ingrese ID de rol" />
-  <button id="btn-actualizar" class="btn btn-primary">Actualizar usuario</button>
+  <input type="number" id="id_usuario_buscar" placeholder="Ingrese ID de usuario" />
+  <button id="btn-buscar">Buscar usuario por ID</button>
+  <h2>Eliminar usuario por ID</h2>
+  <input type="number" id="id_usuario_eliminar" placeholder="Ingrese ID de usuario" />
+  <button id="btn-eliminar">Eliminar usuario por ID</button>
+  <h2>Registrar usuario</h2>
+  <input type="number" id="id_usuario_registrar" placeholder="Ingrese ID de usuario" /><br>
+  <input type="text" id="nombre_registrar" placeholder="Ingrese nombre" /><br>
+  <input type="text" id="apellido_registrar" placeholder="Ingrese apellido" /><br>
+  <input type="text" id="telefono_registrar" placeholder="Ingrese telefono" /><br>
+  <input type="email" id="email_registrar" placeholder="Ingrese email" /><br>
+  <input type="password" id="contraseña_registrar" placeholder="Ingrese contraseña" /><br>
+  <input type="text" id="estado_registrar" placeholder="Ingrese estado" /><br>
+  <input type="number" id="id_rol_registrar" placeholder="Ingrese ID de rol" /><br>
+  <button id="btn-registrar">Registrar usuario</button><br>
+  <h2>Actualizar usuario</h2>
+  <input type="number" id="id_usuario_actualizar" placeholder="Ingrese ID de usuario" /><br><br>
+  <input type="text" id="nombre_actualizar" placeholder="Ingrese nombre" /><br>
+  <input type="text" id="apellido_actualizar" placeholder="Ingrese apellido" /><br>
+  <input type="text" id="telefono_actualizar" placeholder="Ingrese telefono" /><br>
+  <input type="email" id="email_actualizar" placeholder="Ingrese email" /><br>
+  <input type="password" id="contraseña_actualizar" placeholder="Ingrese contraseña" /><br>
+  <input type="text" id="estado_actualizar" placeholder="Ingrese estado" /><br>
+  <input type="number" id="id_rol_actualizar" placeholder="Ingrese ID de rol" /><br>
+  <button id="btn-actualizar">Actualizar usuario</button><br>
 </div>
-
 
     <div id="rol-section" class="form-section">
   <h2>CRUD Roles</h2>

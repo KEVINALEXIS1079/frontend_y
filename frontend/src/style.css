@@ -1,110 +1,213 @@
-.form-section {
-  background-color: #f9f9f9;
-  border-radius: 16px;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f3f6f9;
+  color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #ffffff;
+  padding: 2rem 1rem;
+  width: 240px;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: all 0.3s ease;
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  text-align: left;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: #c8e6c9;
+}
+
+.sidebar button.active {
+  background-color: #2e7d32;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 240px;
   padding: 2rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  max-width: 800px;
-  margin: auto;
+  width: 100%;
+  transition: margin-left 0.3s ease;
 }
 
-.form-section h2 {
-  color: #0078d7;
-  margin-bottom: 1rem;
-  font-size: 1.6rem;
-  border-left: 4px solid #0078d7;
-  padding-left: 0.5rem;
+/* Secciones */
+.form-section {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.styled-table {
+.form-section.active {
+  display: block;
+}
+
+/* Inputs y Botones */
+input, button {
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+/* Animación fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-shadow: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .sidebar button {
+    text-align: center;
+  }
+}
+
+/* Contenedor de tabla */
+.tabla-contenedor {
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Tabla de usuarios */
+.tabla-usuarios {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1rem;
-  margin-top: 1rem;
-  border-radius: 8px;
+  background-color: white;
+  border-radius: 10px;
   overflow: hidden;
 }
 
-.styled-table thead {
-  background-color: #0078d7;
-  color: #ffffff;
+.tabla-usuarios thead {
+  background-color: #4caf50;
+  color: white;
 }
 
-.styled-table th, .styled-table td {
+.tabla-usuarios th,
+.tabla-usuarios td {
+  padding: 0.75rem 1rem;
   text-align: left;
-  padding: 12px 16px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.styled-table tbody tr:hover {
-  background-color: #f1f1f1;
+.tabla-usuarios tr:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.btn {
-  border: none;
-  border-radius: 8px;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  transition: background 0.3s ease;
-}
-
-.btn-primary {
-  background-color: #0078d7;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #005fa3;
-}
-.form-input {
-  width: 100%;
-  padding: 0.6rem;
-  margin: 0.4rem 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-/* Estilo para selector o visualización de roles */
-.role-badge {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: white;
-  text-transform: capitalize;
-}
-
-/* Colores por tipo de rol */
-.role-admin {
-  background-color: #d9534f; /* rojo */
-}
-
-.role-instructor {
-  background-color: #5bc0de; /* azul cielo */
-}
-
-.role-aprendiz {
-  background-color: #5cb85c; /* verde */
-}
-
-.role-guest {
-  background-color: #f0ad4e; /* naranja */
-}
-
-/* Estilo para un dropdown de selección de roles */
-.role-select {
-  width: 100%;
-  padding: 0.6rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  margin: 0.4rem 0;
+/* Lista de roles */
+.lista-contenedor {
+  margin-top: 1rem;
   background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.lista-roles {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-roles li {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.lista-roles li:last-child {
+  border-bottom: none;
+}
+
+.lista-roles span {
+  display: block;
+  margin: 0.25rem 0;
+}
+
+/* Detalles individuales (usuario/rol) */
+div > strong {
+  font-weight: 600;
   color: #333;
-  box-sizing: border-box;
+}
+
+div > strong + br {
+  margin-bottom: 0.5rem;
+}
+
+div > strong + br + * {
+  margin-left: 0.25rem;
+  color: #555;
+}
+
+/* Responsive tabla y lista */
+@media (max-width: 768px) {
+  .tabla-usuarios th, .tabla-usuarios td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .lista-roles li {
+    padding: 0.5rem;
+  }
 }
